@@ -1,0 +1,14 @@
+import { Link } from "react-router-dom";
+
+function Navbar() {
+  return (
+    <nav>
+      <Link to="/">Home</Link> |{" "}
+      <Link to="/appointments">Appointments</Link> |{" "}
+      <Link to="/login">Login</Link> |{" "}
+      <Link to="/signup">Sign Up</Link>
+    </nav>
+  );
+}
+
+export default Navbar;
