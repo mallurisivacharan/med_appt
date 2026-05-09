@@ -1,41 +1,30 @@
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Navbar from './components/Navbar';
-import FindDoctorSearch from './components/FindDoctorSearch';
-import DoctorCard from './components/DoctorCard';
-import GiveReviews from './components/GiveReviews';
-import ProfileCard from './components/ProfileCard';
+import Navbar from "./components/Navbar";
+import Notification from "./components/Notification";
 
-import Login from './pages/Login';
-import Sign_Up from './pages/Sign_Up';
-import AppointmentForm from './pages/AppointmentForm';
-import AppointmentformIC from './pages/AppointmentformIC';
+import Login from "./pages/Login";
+import Sign_Up from "./pages/Sign_Up";
+import AppointmentForm from "./pages/AppointmentForm";
 
 function App() {
   return (
-    <div>
+    <Router>
+      <div>
+        <Navbar />
 
-      <Navbar />
+        {/* Notification component for application-wide visibility */}
+        <Notification />
 
-      <h1>StayHealthy</h1>
-
-      <Login />
-
-      <Sign_Up />
-
-      <AppointmentForm />
-
-      <AppointmentformIC />
-
-      <FindDoctorSearch />
-
-      <DoctorCard />
-
-      <GiveReviews />
-
-      <ProfileCard />
-
-    </div>
+        <Routes>
+          <Route path="/" element={<h2>Home Page</h2>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Sign_Up />} />
+          <Route path="/appointment" element={<AppointmentForm />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
