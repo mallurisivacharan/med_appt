@@ -1,18 +1,32 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
+
+  const isLoggedIn = localStorage.getItem("token");
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    alert("Logged out successfully");
+    navigate("/login");
+  };
+
   return (
     <nav>
-      <h2>StayHealthy</h2>
+      <h2>Medical Appointment Booking</h2>
 
-      <ul>
-        <li>Home</li>
-        <li>Appointments</li>
-        <li>Login</li>
-        <li>Sign Up</li>
-      </ul>
+      <Link to="/">Home</Link> |{" "}
+      <Link to="/appointments">Appointments</Link> |{" "}
+      <Link to="/signup">Sign Up</Link> |{" "}
+      <Link to="/login">Login</Link>
 
-      <button>Logout</button>
+      {isLoggedIn && (
+        <>
+          {" | "}
+          <button onClick={handleLogout}>Logout</button>
+        </>
+      )}
     </nav>
   );
 }
