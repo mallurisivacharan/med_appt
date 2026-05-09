@@ -2,29 +2,38 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function FindDoctorSearch() {
-  const [specialty, setSpecialty] = useState("");
+  const [selectedSpecialty, setSelectedSpecialty] = useState("");
 
   const navigate = useNavigate();
 
+  const specialties = [
+    "Cardiologist",
+    "Dermatologist",
+    "Neurologist",
+    "Orthopedic",
+  ];
+
   const handleSearch = () => {
-    if (specialty !== "") {
-      navigate(`/search/${specialty}`);
+    if (selectedSpecialty) {
+      navigate(`/doctors/${selectedSpecialty}`);
     }
   };
 
   return (
     <div>
-      <h2>Find Doctors</h2>
+      <h2>Find Doctor</h2>
 
       <select
-        value={specialty}
-        onChange={(e) => setSpecialty(e.target.value)}
+        value={selectedSpecialty}
+        onChange={(e) => setSelectedSpecialty(e.target.value)}
       >
         <option value="">Select Specialty</option>
-        <option value="Cardiologist">Cardiologist</option>
-        <option value="Dermatologist">Dermatologist</option>
-        <option value="Neurologist">Neurologist</option>
-        <option value="Orthopedic">Orthopedic</option>
+
+        {specialties.map((specialty, index) => (
+          <option key={index} value={specialty}>
+            {specialty}
+          </option>
+        ))}
       </select>
 
       <button onClick={handleSearch}>Search</button>
