@@ -1,21 +1,33 @@
 import React, { useState } from "react";
 
 function GiveReviews() {
-  const [review, setReview] = useState("");
   const [rating, setRating] = useState("");
+  const [review, setReview] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [savedReview, setSavedReview] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const reviewData = {
+      rating: rating,
+      review: review,
+    };
+
+    setSavedReview(reviewData);
+
     setSubmitted(true);
 
-    alert("Review Submitted");
+    alert("Review Submitted Successfully");
   };
 
   return (
     <div>
       <h2>Give Review</h2>
+
+      {submitted && (
+        <p>You have already submitted a review.</p>
+      )}
 
       <form onSubmit={handleSubmit}>
         <select
@@ -48,6 +60,14 @@ function GiveReviews() {
           Submit Review
         </button>
       </form>
+
+      {savedReview && (
+        <div>
+          <h3>Submitted Review</h3>
+          <p>Rating: {savedReview.rating}</p>
+          <p>Review: {savedReview.review}</p>
+        </div>
+      )}
     </div>
   );
 }
