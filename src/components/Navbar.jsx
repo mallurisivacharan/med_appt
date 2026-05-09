@@ -4,11 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 function Navbar() {
   const navigate = useNavigate();
 
-  const isLoggedIn = localStorage.getItem("token");
+  const isAuthenticated = localStorage.getItem("token");
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
+
     alert("Logged out successfully");
+
     navigate("/login");
   };
 
@@ -21,12 +24,9 @@ function Navbar() {
       <Link to="/signup">Sign Up</Link> |{" "}
       <Link to="/login">Login</Link>
 
-      {isLoggedIn && (
-        <>
-          {" | "}
-          <button onClick={handleLogout}>Logout</button>
-        </>
-      )}
+      {isAuthenticated ? (
+        <button onClick={handleLogout}>Logout</button>
+      ) : null}
     </nav>
   );
 }
