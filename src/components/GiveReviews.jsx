@@ -10,23 +10,21 @@ function GiveReviews() {
     e.preventDefault();
 
     const reviewData = {
-      rating: rating,
-      review: review,
+      rating,
+      review,
     };
 
     setSavedReview(reviewData);
 
     setSubmitted(true);
-
-    alert("Review Submitted Successfully");
   };
 
   return (
     <div>
-      <h2>Give Review</h2>
+      <h2>Give Reviews</h2>
 
       {submitted && (
-        <p>You have already submitted a review.</p>
+        <p>Review already submitted.</p>
       )}
 
       <form onSubmit={handleSubmit}>
@@ -47,10 +45,10 @@ function GiveReviews() {
         <br />
 
         <textarea
-          placeholder="Write your review"
           value={review}
           disabled={submitted}
           onChange={(e) => setReview(e.target.value)}
+          placeholder="Write your review"
         />
 
         <br />
