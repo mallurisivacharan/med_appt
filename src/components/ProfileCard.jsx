@@ -1,83 +1,37 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-function ProfileCard() {
+export default function ProfileCard() {
   const [profile, setProfile] = useState({
     name: "John Doe",
     email: "john@example.com",
-    phone: "9876543210",
+    phone: "1234567890",
   });
 
-  const [isEditing, setIsEditing] = useState(false);
+  const [editData, setEditData] = useState(profile);
 
   const handleChange = (e) => {
-    setProfile({
-      ...profile,
-      [e.target.name]: e.target.value,
-    });
+    setEditData({ ...editData, [e.target.name]: e.target.value });
   };
 
   const handleSave = () => {
-    setIsEditing(false);
-
-    alert("Profile Updated Successfully");
+    setProfile(editData);
   };
 
   return (
     <div>
       <h2>Profile Card</h2>
 
-      {!isEditing ? (
-        <div>
-          <p>Name: {profile.name}</p>
-          <p>Email: {profile.email}</p>
-          <p>Phone: {profile.phone}</p>
+      <p>Name: {profile.name}</p>
+      <p>Email: {profile.email}</p>
+      <p>Phone: {profile.phone}</p>
 
-          <button onClick={() => setIsEditing(true)}>
-            Edit Profile
-          </button>
-        </div>
-      ) : (
-        <div>
-          <input
-            type="text"
-            name="name"
-            value={profile.name}
-            onChange={handleChange}
-            placeholder="Name"
-          />
+      <h3>Edit Profile</h3>
 
-          <br />
-          <br />
+      <input name="name" value={editData.name} onChange={handleChange} />
+      <input name="email" value={editData.email} onChange={handleChange} />
+      <input name="phone" value={editData.phone} onChange={handleChange} />
 
-          <input
-            type="email"
-            name="email"
-            value={profile.email}
-            onChange={handleChange}
-            placeholder="Email"
-          />
-
-          <br />
-          <br />
-
-          <input
-            type="text"
-            name="phone"
-            value={profile.phone}
-            onChange={handleChange}
-            placeholder="Phone Number"
-          />
-
-          <br />
-          <br />
-
-          <button onClick={handleSave}>
-            Save
-          </button>
-        </div>
-      )}
+      <button onClick={handleSave}>Save</button>
     </div>
   );
 }
-
-export default ProfileCard;
