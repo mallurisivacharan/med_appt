@@ -14,7 +14,7 @@ function App() {
       <div>
         <Navbar />
 
-        {/* Notification component for application-wide visibility */}
+        {/* Notification component visible across the application */}
         <Notification />
 
         <Routes>
