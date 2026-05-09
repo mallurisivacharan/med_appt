@@ -1,22 +1,12 @@
-import React from "react";
-
-function DoctorCard() {
-
-  const cancelAppointment = () => {
-    alert("Appointment Cancelled");
-  };
-
-  return (
-    <div>
-      <h2>Dr. John Smith</h2>
-
-      <p>Cardiologist</p>
-
-      <button onClick={cancelAppointment}>
-        Cancel Appointment
-      </button>
-    </div>
+const cancelAppointment = (id) => {
+  const updatedAppointments = appointments.filter(
+    (appointment) => appointment.id !== id
   );
-}
 
-export default DoctorCard;
+  setAppointments(updatedAppointments);
+
+  localStorage.setItem(
+    "appointments",
+    JSON.stringify(updatedAppointments)
+  );
+};
