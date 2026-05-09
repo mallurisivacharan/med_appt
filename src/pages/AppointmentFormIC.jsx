@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 
 function AppointmentFormIC() {
-  const [appointmentData, setAppointmentData] = useState({
-    patientName: "",
-    doctorName: "",
-    appointmentDate: "",
+  const [formData, setFormData] = useState({
+    name: "",
+    phoneNumber: "",
   });
 
   const handleChange = (e) => {
-    setAppointmentData({
-      ...appointmentData,
+    setFormData({
+      ...formData,
       [e.target.name]: e.target.value,
     });
   };
@@ -17,37 +16,31 @@ function AppointmentFormIC() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    alert("Appointment Booked Successfully");
+    alert("Appointment Submitted");
 
-    console.log(appointmentData);
+    console.log(formData);
   };
 
   return (
     <div>
-      <h2>Appointment Booking Form</h2>
+      <h2>Appointment Form</h2>
 
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          name="patientName"
-          placeholder="Patient Name"
+          name="name"
+          placeholder="Name"
           onChange={handleChange}
         />
 
         <input
           type="text"
-          name="doctorName"
-          placeholder="Doctor Name"
+          name="phoneNumber"
+          placeholder="Phone Number"
           onChange={handleChange}
         />
 
-        <input
-          type="date"
-          name="appointmentDate"
-          onChange={handleChange}
-        />
-
-        <button type="submit">Book Appointment</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
